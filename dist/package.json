@@ -31,19 +31,5 @@
     "redux-thunk": "^2.3.0",
     "sqlite": "^3.0.3",
     "validator": "^10.11.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.6.4",
-    "@babel/preset-env": "^7.6.3",
-    "@babel/preset-react": "^7.6.3",
-    "babel-loader": "^8.0.5",
-    "nodemon": "^1.19.4",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
-    "path": "^0.12.7",
-    "redux-logger": "^3.0.6",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0"
   }
 }
