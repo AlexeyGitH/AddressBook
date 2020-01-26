@@ -4,7 +4,8 @@
   "description": "adress book",
   "main": "express-start.js",
   "scripts": {
-    "start": "nodemon --use_strict express-start.js",
+	"start": "node --use_strict express-start.js",
+    "start2": "nodemon --use_strict express-start.js",
     "bundle": "webpack",
     "dev": "webpack-dev-server --hot --open",
     "build": "cd packages/react-scripts && node bin/react-scripts.js build"
@@ -22,6 +23,8 @@
     "moment": "^2.24.0",
     "node-gyp": "^6.0.1",
     "node-pre-gyp": "^0.14.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "react": "^16.11.0",
     "react-datepicker": "^2.9.6",
     "react-dom": "^16.11.0",
@@ -38,8 +41,6 @@
     "@babel/preset-react": "^7.6.3",
     "babel-loader": "^8.0.5",
     "nodemon": "^1.19.4",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "redux-logger": "^3.0.6",
     "webpack": "^4.41.2",
