@@ -1,7 +1,5 @@
 import React from 'react';
-import {isNullValue,  Date_RU_DD_MMMM} from '../Js/General';
-import moment from 'moment';
-
+import {isNullValue,  Date_RU_DD_MMMM, Date_YYYY_MM_DD, Date_DD_MM} from '../Js/General';
 
 class Contacts_Grid extends React.Component {
 
@@ -47,10 +45,12 @@ class Contacts_Grid extends React.Component {
                 let status_value = "Работа";
                 var currentDate = new Date();
                 
-                if (currentDate >= new Date(moment(item.status_begin, 'DD/MM/YYYY').format('YYYY-MM-DD')) && currentDate <= new Date(moment(item.status_end, 'DD/MM/YYYY').format('YYYY-MM-DD')).setHours(23,59,59,999)) {status_value = item.status}
+                if (currentDate >= new Date(Date_YYYY_MM_DD(item.status_begin)) && currentDate <= new Date(Date_YYYY_MM_DD(item.status_end)).setHours(23,59,59,999)) {status_value = item.status}
 
                 let text_additional_phone = "";
                 if (item.additional_phone) {text_additional_phone = "доб. " + item.additional_phone};
+
+                let text_mailto = "mailto:"+ item.mail;
 
 
                 RowItems_ROW_ELEMENT.push(
@@ -116,7 +116,7 @@ class Contacts_Grid extends React.Component {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-3 px-0">
-                             Городской тел.: 
+                             Рабочий тел.: 
                         </div>
                         <div className="col">
                              <span className="text_color1">{item.work_phone} {text_additional_phone}</span><br/>   
@@ -135,7 +135,7 @@ class Contacts_Grid extends React.Component {
                              Дата рождения: 
                         </div>
                         <div className="col">
-                             <span className="text_color1">{ Date_RU_DD_MMMM(moment(item.birth_date, 'DD/MM/YYYY').format('DD-MM'))}</span><br/>
+                             <span className="text_color1">{ Date_RU_DD_MMMM(Date_DD_MM(item.birth_date))}</span><br/>
                         </div>
                     </div>
                     <div className="row">
@@ -143,7 +143,7 @@ class Contacts_Grid extends React.Component {
                             Почта: 
                         </div>
                         <div className="col">
-                            <a href="mailto:{item.mail}" className="text_color1">{item.mail}</a>
+                            <a href={text_mailto} className="text_color1">{item.mail}</a>
                         </div>
                     </div>                    
                 </div>

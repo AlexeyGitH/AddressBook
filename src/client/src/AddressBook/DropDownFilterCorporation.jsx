@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 class DropDownFilterCorporation extends React.Component {
 
     constructor(props) {
@@ -21,7 +20,7 @@ class DropDownFilterCorporation extends React.Component {
     render() {
         //console.log('render drop down');
        // console.log('this.props corp ' + JSON.stringify(this.props));
-       // console.log('this.state corp ' + JSON.stringify(this.state));
+       //console.log('this.state corp ' + JSON.stringify(this.state));
 
         const numbers = this.props.FilterData;
 

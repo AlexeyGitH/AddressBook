@@ -9,11 +9,12 @@ import { getContact, change_last_name
 } from '../actions/PageActions';
 
 import DatePicker from "react-datepicker";
+
+import {isNullValue,  DatePicker_YYYY_MM_DD} from '../../Js/General';
+
 import DropDownFilterDepartament from '../../AddressBook/DropDownFilterDepartament.jsx';
 import DropDownFilterCorporation from '../../AddressBook/DropDownFilterCorporation.jsx';
 import DropDownFilterGenders from '../../AddressBook/DropDownFilterGenders.jsx';
-
-import moment from 'moment';
 
 const API_change = document.location.protocol + "//" + document.location.host + "/Post_Additional_Contacts";
 const API_data = document.location.protocol + "//" + document.location.host + "/contact_data";
@@ -43,17 +44,6 @@ let fetchDataFilter = {
     })
 }
   
-
-
-function  isNullValue(Value) {
-    let result = '';
-    if (typeof(Value) !== "undefined") {
-        if (Value === '' || Value === null) {result = ''}  else {result = Value} ;                
-    };
-    //console.log("res", result=='');
-    return result;
-}  
-
 class Additional_Contacts_Grid extends React.Component {
 
 
@@ -373,16 +363,15 @@ class Additional_Contacts_Grid extends React.Component {
                                                 <div className="col-md-3">
                                                     <div className="form-group">
                                                         <label htmlFor="input_birthday" className="col-form-label">День рождения:</label>
-                                                        {/*console.log('birth_date 111111 ' +  new Date(moment(birth_date, 'DD/MM/YYYY').format('YYYY-MM-DD')))*/}
-                                                        {/*console.log('birth_date момент ' + moment(birth_date, 'DD/MM/YYYY').isValid())*/}
-
-                                                        {
+                                                        {/*console.log('DatePicker_YYYY_MM_DD ' + DatePicker_YYYY_MM_DD(birth_date))*/}
+                                                        
                                                         <DatePicker id="input_birth_date" className="form-control"  
-                                                            selected={moment(birth_date, 'DD/MM/YYYY').isValid() ? new Date(moment(birth_date, 'DD/MM/YYYY').format('YYYY-MM-DD')) : ""}
+                                                            placeholderText="dd/MM/yyyy"
+                                                            selected={DatePicker_YYYY_MM_DD(birth_date) != null ? new Date(DatePicker_YYYY_MM_DD(birth_date)) : "" }
+                                                            //selected={new Date('2019-12-12')}
                                                             onChange={this.props.ch_birth_date}
                                                             dateFormat="dd/MM/yyyy"
                                                         />
-                                                        }
                                                     </div>
                                                 </div>
 
@@ -511,7 +500,8 @@ class Additional_Contacts_Grid extends React.Component {
                                             <div className="form-group">
                                                 <label htmlFor="input_status_begin" className="col-form-label">Дата начала:</label>
                                                 <DatePicker id="input_status_begin" className="form-control"  
-                                                    selected={moment(status_begin, 'DD/MM/YYYY').isValid() ? new Date(moment(status_begin, 'DD/MM/YYYY').format('YYYY-MM-DD')) : ""}
+                                                    placeholderText="dd/MM/yyyy"
+                                                    selected={DatePicker_YYYY_MM_DD(status_begin) != null ? new Date(DatePicker_YYYY_MM_DD(status_begin)) : "" }
                                                     onChange={this.props.ch_status_begin}
                                                     dateFormat="dd/MM/yyyy"
                                                 />
@@ -522,7 +512,8 @@ class Additional_Contacts_Grid extends React.Component {
                                             <div className="form-group">
                                                 <label htmlFor="input_status_end" className="col-form-label">Дата завершения:</label>
                                                 <DatePicker id="input_status_end" className="form-control"  
-                                                    selected={moment(status_end, 'DD/MM/YYYY').isValid() ? new Date(moment(status_end, 'DD/MM/YYYY').format('YYYY-MM-DD')) : ""}
+                                                    placeholderText="dd/MM/yyyy"
+                                                    selected={DatePicker_YYYY_MM_DD(status_end) != null ? new Date(DatePicker_YYYY_MM_DD(status_end)) : "" }
                                                     onChange={this.props.ch_status_end}
                                                     dateFormat="dd/MM/yyyy"
                                                 />

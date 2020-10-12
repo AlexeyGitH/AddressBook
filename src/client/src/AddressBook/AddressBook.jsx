@@ -1,36 +1,30 @@
-import React  from 'react';
+import React, { Suspense }  from 'react';
 import ReactDom from 'react-dom';
 
-
-import NavBarApp from './NavBar.jsx';
-
-import SearchBox from './SearchBox.jsx';
-/*
-import {Container, Row, Navbar} from 'react-bootstrap';
-*/
+const NavBarAppComponent = React.lazy(() => import('./NavBar.jsx'));
+const SearchBoxComponent = React.lazy(() => import('./SearchBox.jsx'));
 
 const Settings = require('./settings/settings.json');
-
-//console.log(Settings.CorporationName);
-
-//import {Navbar, img} from 'react-bootstrap';
 
 class MainPage extends React.Component  {
 
 render() {
 
   return (  
-  <div>
-    
-    <NavBarApp CorpName = {Settings.CorporationName}/>
-    <SearchBox className="container-fluid"/>
 
-  </div>
+    <div>
+      <Suspense fallback={<div>Загрузка...</div>}>
+        <section>
+          <NavBarAppComponent CorpName = {Settings.CorporationName}/>
+          <SearchBoxComponent className="container-fluid"/>
+        </section>
+      </Suspense>
+    </div>
   )
-
  }  
 }
 
 ReactDom.render(<MainPage/>, document.getElementById('react-app'));
 
-//      <NavBarApp CorpName = {Settings.CorporationName}/>
+
+

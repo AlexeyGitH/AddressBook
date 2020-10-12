@@ -248,6 +248,7 @@ class SearchBox extends React.Component {
       }
 
       handleClickFilter(e, value, filter) {
+        console.log('handleClickFilter');
         
         fetchDataFilter.body = JSON.stringify({filter: filter, v_filter: value});    
 
@@ -344,7 +345,7 @@ class SearchBox extends React.Component {
                               </button>
                           </div>  
                           
-                          <div className="input-group-prepend" id="input_type_phone"><span class="input-group-text"> {this.state.valueTypePhone} </span></div>
+                          <div className="input-group-prepend" id="input_type_phone"><span className="input-group-text"> {this.state.valueTypePhone} </span></div>
                           <input type="text" className="form-control" id="input_phone" value={this.state.valuePhone} onChange={this.handleChangePhone} placeholder=""/>
                       </div>
                       

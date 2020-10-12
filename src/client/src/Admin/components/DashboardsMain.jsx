@@ -1,12 +1,16 @@
+import React, { Suspense }   from 'react';
+//import React from 'react';
 
-import React from 'react'
-//import { connect } from 'react-redux'
+const NavBarAppComponent = React.lazy(() => import('../../AddressBook/NavBar.jsx'));
+//const Additional_Contacts_Grid = React.lazy(() => import('./Additional_Contacts_Grid.jsx'));
+//const Additional_Contact_Card = React.lazy(() => import('./Additional_Contact_Card.jsx'));
 
-import NavBarApp from '../../AddressBook/NavBar.jsx';
+//import NavBarAppComponent from '../../AddressBook/NavBar.jsx';
 import Additional_Contacts_Grid from './Additional_Contacts_Grid.jsx';
 import Additional_Contact_Card from './Additional_Contact_Card.jsx';
 
 const Settings = require('../../AddressBook/settings/settings.json');
+
 
 
 class MainPage extends React.Component  {
@@ -33,36 +37,28 @@ class MainPage extends React.Component  {
   });
 }
 
-
   View_Contacts() {
+    //console.log('Resume: '  + this.state.Resume);
     if (this.state.Resume == 'Grid')
-     {return <Additional_Contacts_Grid SetIdContact = {this.SetIdContact}/> }
+     {return (
+        <Additional_Contacts_Grid SetIdContact = {this.SetIdContact}/>
+      )}                 
     else if (this.state.Resume == 'Card')
-     {return <Additional_Contact_Card SetGrid = {this.SetGrid} id_contact = {this.state.id_contact}/>} ;                
+     {return (
+        <Additional_Contact_Card SetGrid = {this.SetGrid} id_contact = {this.state.id_contact}/>
+     )}                 
   }  
 
   render() {
   
     return (
       <div>
-        <NavBarApp CorpName = {Settings.CorporationName}/>
-        {/*
-        <div className="container-fluid mt-2">
-          <div className="row" style= {{display: 'flex'}}>
-            <nav className="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
-              <ul className="nav nav-pills flex-column">
-                <li className="nav-item">
-                  <a className="nav-link active" href="#">Дополнительные контакты {this.props.name}</a>
-                </li>
-                </ul>
-              </nav>
-              <div className="col-sm-9 col-md-10">
-              <Additional_Contacts_Grid/> 
-            </div>
-          </div>
-        </div>
-        */}
-        {this.View_Contacts()}
+        <Suspense fallback={<div>Загрузка...</div>}>
+          <section>
+            <NavBarAppComponent CorpName = {Settings.CorporationName}/>
+            {this.View_Contacts()}
+          </section>
+        </Suspense>        
       </div>  
     )
   

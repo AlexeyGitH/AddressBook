@@ -1,6 +1,9 @@
-import React from 'react'
+//import React, { Suspense }   from 'react';
+import React from 'react';
 import "isomorphic-fetch";
-import MainPage from './DashboardsMain.jsx';
+
+const MainPage = React.lazy(() => import('./DashboardsMain.jsx'));
+//import MainPage from './DashboardsMain.jsx';
 
 
 const API = document.location.protocol + "//" + document.location.host + "/dashboards_admin";
@@ -41,7 +44,11 @@ render() {
     if (isFetching) {return <div>...Loading</div>;}
 
     if (DataUser === null) {document.location.href = API_adm}
-    else {return <MainPage/>};
+    else {return (
+      //<Suspense fallback={<div>Загрузка...</div>}>
+          <MainPage/>
+      //</Suspense>  
+    )};
     
   }
 }

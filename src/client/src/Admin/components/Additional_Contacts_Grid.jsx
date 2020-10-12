@@ -1,6 +1,6 @@
 import React from 'react';
 import "isomorphic-fetch";
-
+import {isNullValue} from '../../Js/General';
 
 const API = document.location.protocol + "//" + document.location.host + "/additional_contacts";
 const API_delete_row = document.location.protocol + "//" + document.location.host + "/delete_all_contacts";
@@ -16,15 +16,6 @@ let fetchData = {
         id: 'all'
     })
   }
-
-  
-
-
-function  isNullValue(Value) {
-    let result = '';
-    if (Value === '' || Value === null) {result = ''}  else {result = Value} ;                
-    return result;
-}  
 
 class Additional_Contacts_Grid extends React.Component {
 
@@ -73,6 +64,7 @@ class Additional_Contacts_Grid extends React.Component {
     }
 
     ChangeContact(event) {
+        
         this.props.SetIdContact(event);
     }    
 

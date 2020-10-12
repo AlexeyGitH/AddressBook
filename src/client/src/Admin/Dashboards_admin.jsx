@@ -1,14 +1,16 @@
 
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
-import { store } from './store/configureStore'
+import React, { Suspense }   from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { store } from './store/configureStore';
 
-import Dashboards from './components/Dashboards.jsx' // изменили путь
+const Dashboards = React.lazy(() => import('./components/Dashboards.jsx'));
 
 ReactDOM.render(
   <Provider store={store}>
-    <Dashboards />
+    <Suspense fallback={<div>Загрузка...</div>}>
+      <Dashboards />
+    </Suspense>  
   </Provider>,
   document.getElementById('react-app')
 )
